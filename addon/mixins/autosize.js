@@ -19,7 +19,7 @@ export default Ember.Mixin.create({
    * @see https://github.com/jackmoore/autosize
    */
   _initializeAutosize: Ember.on('didInsertElement', function () {
-    autosize(this.element));
+    autosize(this.element);
     this._setCss('min-height');
     this._setCss('max-height');
   }),
