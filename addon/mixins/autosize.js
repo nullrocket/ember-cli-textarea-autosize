@@ -12,14 +12,14 @@ export default Ember.Mixin.create({
    * @see http://www.jacklmoore.com/autosize/
    */
   _removeAutosize: Ember.on('willDestroyElement', function () {
-    autosize.destroy(this.$());
+    autosize.destroy(this.element);
   }),
   /**
    * Once this textarea is inserted in the DOM initialize on autosize.
    * @see https://github.com/jackmoore/autosize
    */
   _initializeAutosize: Ember.on('didInsertElement', function () {
-    autosize(this.$());
+    autosize(this.element));
     this._setCss('min-height');
     this._setCss('max-height');
   }),
@@ -30,7 +30,7 @@ export default Ember.Mixin.create({
    */
   _setCss(propertyName) {
     if (Ember.isPresent(this.get(propertyName))) {
-      this.$().css(propertyName, this.get(propertyName));
+      this.element.style[propertyName] = this.get(propertyName);
     }
   }
 });
